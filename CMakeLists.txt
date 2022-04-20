@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(plansys2-hospital-l4ros2)
+project(plansys2_hospital_l4ros2)
 
 find_package(ament_cmake_auto REQUIRED)
 

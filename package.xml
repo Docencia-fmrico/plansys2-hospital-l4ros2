@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>plansys2-hospital-l4ros2</name>
+  <name>plansys2_hospital_l4ros2</name>
   <version>1.0.0</version>
   <description>
     PlanSys2 
