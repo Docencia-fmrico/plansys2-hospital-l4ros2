@@ -60,7 +60,7 @@ def generate_launch_description():
     )
 
     tiago_spawn = include_launch_py_description(
-        'tiago_gazebo', ['launch', 'tiago_spawn.launch.py'])
+        'plansys2_hospital_l4ros2', ['launch', 'tiago_spawn.launch.py'])
 
     tiago_bringup = include_launch_py_description(
         'tiago_bringup', ['launch', 'tiago_bringup.launch.py'])
