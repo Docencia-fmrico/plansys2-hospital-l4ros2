@@ -1,5 +1,5 @@
 (define (domain indoor-nav-strips-typed)
-(:requirements :strips :typing)
+(:requirements :strips :typing :durative-actions)
 
 ;;TYPES
 
@@ -24,8 +24,9 @@
 
 ;;ACTIONS
 
-(:action moveToLocation
+(:durative-action moveToLocation
   :parameters (?r - robot ?from ?to - location)
+  :duration ( = ?duration 5)
   :precondition 
     (and 
       (robotAt ?r ?from)
@@ -40,6 +41,7 @@
 
 (:action moveThroughDoor
   :parameters (?r - robot ?d - door ?from ?to - location)
+  :duration ( = ?duration 5)
   :precondition 
     (and 
       (opened ?d)
@@ -88,8 +90,9 @@
 ;    )
 ;)
 
-(:action pick
+(:durative-action pick
   :parameters (?r - robot ?o - object ?l - location)
+  :duration ( = ?duration 3)
   :precondition 
     (and 
       (robotAt ?r ?l)
@@ -102,8 +105,9 @@
     )
 )
 
-(:action drop
+(:durative-action drop
   :parameters (?r - robot ?o - object ?l - location)
+  :duration ( = ?duration 3)
   :precondition 
     (and 
       (robotAt ?r ?l)
@@ -116,8 +120,9 @@
     )
 )
 
-(:action open
+(:durative-action open
   :parameters (?r - robot ?d - door ?from - location)
+  :duration ( = ?duration 3)
   :precondition 
     (and 
       (robotAt ?r ?from)
@@ -131,8 +136,9 @@
     )
 )
 
-(:action closed
+(:durative-action closed
   :parameters (?r - robot ?d - door ?from - location)
+  :duration ( = ?duration 3)
   :precondition 
     (and 
       (robotAt ?r ?from)
