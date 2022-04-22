@@ -63,6 +63,5 @@ def generate_launch_description():
     ld.add_action(fake_nav2_cmd)
 
     ld.add_action(move_cmd)
-    ld.add_action(patrol_cmd)
 
     return ld

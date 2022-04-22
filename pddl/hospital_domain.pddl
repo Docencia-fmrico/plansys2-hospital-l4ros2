@@ -1,13 +1,13 @@
 (define (domain indoor-nav-strips-typed)
-(:requirements :strips :typing :durative-actions)
+(:requirements :strips :typing :adl :fluents :durative-actions)
 
 ;;TYPES
 
 (:types
-  room corridor zone - location
-  location door - connectable
-  object
-  robot
+room corridor zone - location
+location door - connectable
+object
+robot
 )
 
 ;;PREDICATES
@@ -25,36 +25,34 @@
 ;;ACTIONS
 
 (:durative-action moveToLocation
-  :parameters (?r - robot ?from ?to - location)
-  :duration ( = ?duration 5)
-  :precondition 
-    (and 
-      (robotAt ?r ?from)
-      (connected ?from ?to)
-    )
-  :effect 
-    (and 
-      (not (robotAt ?r ?from))
-      (robotAt ?r ?to)
+    :parameters (?r - robot ?from ?to - location)
+    :duration ( = ?duration 5)
+    :condition (and
+        (at start(connected ?from ?to))
+        (at start(robotAt ?r ?from))
+        )
+    :effect (and
+        (at start(not(robotAt ?r ?from)))
+        (at end(robotAt ?r ?to))
     )
 )
 
-(:action moveThroughDoor
-  :parameters (?r - robot ?d - door ?from ?to - location)
-  :duration ( = ?duration 5)
-  :precondition 
-    (and 
-      (opened ?d)
-      (robotAt ?r ?from)
-      (connected ?from ?d)
-      (connected ?to ?d)
-    )
-  :effect 
-    (and 
-      (not (robotAt ?r ?from))
-      (robotAt ?r ?to)
-    )
-)
+;(:durative-action moveThroughDoor
+;  :parameters (?r - robot ?d - door ?from ?to - location)
+;  :duration ( = ?duration 5)
+;  :condition 
+;    (and 
+;      (at start(opened ?d))
+;      (at start(robotAt ?r ?from))
+;      (at start(connected ?from ?d))
+;      (at start(connected ?to ?d))
+;    )
+;  :effect 
+;    (and 
+;      (at start(not (robotAt ?r ?from)))
+;      ((at end(robotAt ?r ?to)))
+;    )
+;)
 
 ;(:action moveThroughElevator
 ;  :parameters (?r - robot ?e - elevator ?from ?to - corridor)
@@ -90,67 +88,67 @@
 ;    )
 ;)
 
-(:durative-action pick
-  :parameters (?r - robot ?o - object ?l - location)
-  :duration ( = ?duration 3)
-  :precondition 
-    (and 
-      (robotAt ?r ?l)
-      (objectAt ?o ?l)
-    )
-  :effect 
-    (and 
-      (not (objectAt ?o ?l))
-      (objectIn ?o ?r)
-    )
-)
+;(:durative-action pick
+;  :parameters (?r - robot ?o - object ?l - location)
+;  :duration ( = ?duration 3)
+;  :condition 
+;    (and 
+;      (at start(robotAt ?r ?l))
+;      (at start(objectAt ?o ?l))
+;    )
+;  :effect 
+;    (and 
+;      (at start(not (objectAt ?o ?l)))
+;      (at end(objectIn ?o ?r))
+;    )
+;)
 
-(:durative-action drop
-  :parameters (?r - robot ?o - object ?l - location)
-  :duration ( = ?duration 3)
-  :precondition 
-    (and 
-      (robotAt ?r ?l)
-      (objectIn ?o ?r)
-    )
-  :effect 
-    (and 
-      (not (objectIn ?o ?r))
-      (objectAt ?o ?l)
-    )
-)
+;(:durative-action drop
+;  :parameters (?r - robot ?o - object ?l - location)
+;  :duration ( = ?duration 3)
+;  :condition 
+;    (and 
+;      (at start(robotAt ?r ?l))
+;      (at start(objectIn ?o ?r))
+;    )
+;  :effect 
+;    (and 
+;      (at start(not (objectIn ?o ?r)))
+;      (at end(objectAt ?o ?l))
+;    )
+;)
 
-(:durative-action open
-  :parameters (?r - robot ?d - door ?from - location)
-  :duration ( = ?duration 3)
-  :precondition 
-    (and 
-      (robotAt ?r ?from)
-      (connected ?from ?d)
-      (closed ?d)
-    )
-  :effect 
-    (and 
-      (not (closed ?d)) ;;closen't
-      (opened ?d)
-    )
-)
+;(:durative-action open 
+;  :parameters (?r - robot ?d - door ?from - location)
+;  :duration ( = ?duration 3)
+;  :precondition 
+;    (and 
+;      (at start(robotAt ?r ?from))
+;      (at start(connected ?from ?d))
+;      (at start(closed ?d))
+;    )
+;  :effect 
+;    (and 
+;      (at start(not (closed ?d))) ;;closen't
+;      (at end(opened ?d))
+;    )
+;)
 
-(:durative-action closed
-  :parameters (?r - robot ?d - door ?from - location)
-  :duration ( = ?duration 3)
-  :precondition 
-    (and 
-      (robotAt ?r ?from)
-      (connected ?from ?d)
-      (opened ?d)
-    )
-  :effect 
-    (and 
-      (not (opened ?d)) ;;open't
-      (closed ?d)
-    )
-)
+;(:durative-action closed
+;  :parameters (?r - robot ?d - door ?from - location)
+;  :duration ( = ?duration 3)
+;  :precondition 
+;    (and 
+;      (at start(robotAt ?r ?from))
+;      (at start(connected ?from ?d))
+;      (at start(opened ?d))
+;    )
+;  :effect 
+;    (and 
+;      (at start(not (opened ?d))) ;;open't
+;      (at end(closed ?d))
+;    )
+;)
 
 
 )

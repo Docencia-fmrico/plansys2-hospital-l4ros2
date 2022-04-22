@@ -35,7 +35,7 @@ class MoveAction : public plansys2::ActionExecutorClient
 {
 public:
   MoveAction()
-  : plansys2::ActionExecutorClient("move", 500ms)
+  : plansys2::ActionExecutorClient("moveToLocation", 500ms)
   {
     geometry_msgs::msg::PoseStamped wp;
     wp.header.frame_id = "/map";
@@ -162,7 +162,7 @@ int main(int argc, char ** argv)
   rclcpp::init(argc, argv);
   auto node = std::make_shared<MoveAction>();
 
-  node->set_parameter(rclcpp::Parameter("action_name", "move"));
+  node->set_parameter(rclcpp::Parameter("action_name", "moveToLocation"));
   node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
   rclcpp::spin(node->get_node_base_interface());
