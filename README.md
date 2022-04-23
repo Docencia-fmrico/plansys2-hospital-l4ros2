@@ -9,7 +9,9 @@ Here we can see images of the gazebo world, the map created by the robot and the
 ![scheme map image](imgs/hospital_map_scheme.png)
 
 ## PDDL
-...
+The domain types hierarchy follows this scheme:
+
+![domain types hierarchy](imgs/domain_types_hierarchy.png)
 
 ## Authors
 
