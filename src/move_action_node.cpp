@@ -40,6 +40,7 @@ public:
     geometry_msgs::msg::PoseStamped wp;
     wp.header.frame_id = "/map";
     wp.header.stamp = now();
+
     wp.pose.position.x = 0.0;
     wp.pose.position.y = -2.0;
     wp.pose.position.z = 0.0;
@@ -47,23 +48,35 @@ public:
     wp.pose.orientation.y = 0.0;
     wp.pose.orientation.z = 0.0;
     wp.pose.orientation.w = 1.0;
-    locations_["wp1"] = wp;
+    locations_["hall"] = wp;
 
-    wp.pose.position.x = 1.8;
+    wp.pose.position.x = 24.0;
+    wp.pose.position.y = -4.6;
+    locations_["corridor1"] = wp;
+
+    wp.pose.position.y = 5.0;
+    wp.pose.position.y = -4.6;
+    locations_["corridor2"] = wp;
+
+    wp.pose.position.x = 18.7;
+    wp.pose.position.y = -0.1;
+    locations_["corridor3"] = wp;
+
+    wp.pose.position.x = 24.3;
     wp.pose.position.y = 0.0;
-    locations_["wp2"] = wp;
+    locations_["corridor4"] = wp;
 
-    wp.pose.position.x = 0.0;
-    wp.pose.position.y = 2.0;
-    locations_["wp3"] = wp;
+    wp.pose.position.x = 34.2;
+    wp.pose.position.y = 0.0;
+    locations_["corridor5"] = wp;
 
-    wp.pose.position.x = -0.5;
-    wp.pose.position.y = -0.5;
-    locations_["wp4"] = wp;
+    wp.pose.position.x = 43.0;
+    wp.pose.position.y = -4.7;
+    locations_["corridor6"] = wp;
 
-    wp.pose.position.x = -2.0;
-    wp.pose.position.y = -0.4;
-    locations_["wp_control"] = wp;
+    wp.pose.position.x = 8.36;
+    wp.pose.position.y = 0.0;
+    locations_["reception"] = wp;
 
     using namespace std::placeholders;
     pos_sub_ = create_subscription<geometry_msgs::msg::PoseWithCovarianceStamped>(
