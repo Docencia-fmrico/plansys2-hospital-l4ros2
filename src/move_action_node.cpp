@@ -43,7 +43,7 @@ public:
       locations_[wp_str] = wp;
     }
     
-    /*
+    //-----------------------------
     geometry_msgs::msg::PoseStamped wp;
     wp.header.frame_id = "/map";
     wp.header.stamp = now();
@@ -84,7 +84,7 @@ public:
     wp.pose.position.x = 8.36;
     wp.pose.position.y = 0.0;
     locations_["reception"] = wp;
-    */
+    //------------------    
 
     using namespace std::placeholders;
     pos_sub_ = create_subscription<geometry_msgs::msg::PoseWithCovarianceStamped>(
