@@ -19,6 +19,7 @@ find_package(plansys2_bt_actions REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 
+
 set(dependencies
     rclcpp
     rclcpp_action
@@ -29,10 +30,22 @@ set(dependencies
     plansys2_planner
     plansys2_problem_expert
     plansys2_pddl_parser
+    geometry_msgs
+
 )
+
+include_directories(include)
+
+install(DIRECTORY include/
+  DESTINATION include/
+)
+
+add_library(${PROJECT_NAME} SHARED src/MoveAction.cpp)
+ament_target_dependencies(${PROJECT_NAME} ${dependencies})
 
 add_executable(move_action_node src/move_action_node.cpp)
 ament_target_dependencies(move_action_node ${dependencies})
+target_link_libraries(move_action_node ${PROJECT_NAME})
 
 add_executable(hospital_controller_node src/hospital_controller_node.cpp)
 ament_target_dependencies(hospital_controller_node ${dependencies})
