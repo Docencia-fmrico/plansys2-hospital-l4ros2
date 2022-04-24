@@ -36,7 +36,17 @@ def generate_launch_description():
             'plansys2_bringup_launch_monolithic.py')),
         launch_arguments={'model_file': example_dir + '/pddl/hospital_domain.pddl'}.items()
         )
-
+    """
+    nav2_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join(
+            get_package_share_directory('nav2_bringup'),
+            'launch',
+            'tb3_simulation_launch.py')),
+        launch_arguments={
+            'autostart': 'true',
+            'params_file': os.path.join(example_dir, 'params', 'nav2_params.yaml')
+        }.items())
+    """
     fake_nav2_cmd = Node(
         package='plansys2_hospital_l4ros2',
         executable='nav2_sim_node',
@@ -61,7 +71,6 @@ def generate_launch_description():
     # Declare the launch options
     ld.add_action(plansys2_cmd)
     ld.add_action(fake_nav2_cmd)
-
     ld.add_action(move_cmd)
 
     return ld

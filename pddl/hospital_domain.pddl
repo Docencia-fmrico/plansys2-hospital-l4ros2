@@ -4,8 +4,7 @@
 ;;TYPES
 
 (:types
-room corridor zone - location
-location door - connectable
+room corridor zone door - location
 object
 robot
 )
@@ -15,7 +14,7 @@ robot
 (:predicates 
   (robotAt ?r - robot ?l - location)
   (objectAt ?o - object ?l - location)
-  (connected ?c1 ?c2 - connectable)
+  (connected ?c1 ?c2 - location)
   (closed ?d - door)
   (opened ?d - door)
   (objectIn ?o - object ?r - robot)

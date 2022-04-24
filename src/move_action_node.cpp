@@ -35,7 +35,7 @@ class MoveAction : public plansys2::ActionExecutorClient
 {
 public:
   MoveAction()
-  : plansys2::ActionExecutorClient("moveToLocation", 500ms)
+  : plansys2::ActionExecutorClient("moveToLocation", 5000ms)
   {
     geometry_msgs::msg::PoseStamped wp;
     wp.header.frame_id = "/map";
