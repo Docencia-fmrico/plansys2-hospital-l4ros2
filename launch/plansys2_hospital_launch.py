@@ -66,7 +66,7 @@ def generate_launch_description():
         executable='move_action_node',
         name='move_action_node',
         output='screen',
-        parameters=[])
+        parameters=[os.path.join(hospital_dir, 'config', 'coords.yaml')])
 
     # Create the launch description and populate
     ld = LaunchDescription()

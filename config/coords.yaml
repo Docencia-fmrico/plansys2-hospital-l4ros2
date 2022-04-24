@@ -4,7 +4,7 @@ move_action_node:
     "corridor5", "corridor6", "reception", "visit1", "str1", "str2", "str3",
     "str4", "str5", "v11", "s1", "s2", "s32", "s4", "s5"]
     hall: [0.0, -2.0]
-    corridor1: [24.0, -4,6]
+    corridor1: [24.0, -4.6]
     corridor2: [24.0, 5.0]
     corridor3: [18.7, -0.7]
     corridor4: [24.3, 0.0]

@@ -38,8 +38,8 @@ public:
   : plansys2::ActionExecutorClient("move_to_location", 5000ms)
   {
 
-    declare_parameter("waypoints");
-    std::vector<std::string> wp_names_ = get_parameter("waypoints").as_string_array();
+    this->declare_parameter("waypoints");
+    std::vector<std::string> wp_names_ = this->get_parameter("waypoints").as_string_array();
 
     for (int i = 0; i < wp_names_.size(); i++) {
       std::string wp_str = wp_names_.at(i);
