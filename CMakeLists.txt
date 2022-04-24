@@ -47,6 +47,14 @@ add_executable(move_action_node src/move_action_node.cpp)
 ament_target_dependencies(move_action_node ${dependencies})
 target_link_libraries(move_action_node ${PROJECT_NAME})
 
+add_executable(move_through_door_action_node src/move_through_door_action_node.cpp)
+ament_target_dependencies(move_through_door_action_node ${dependencies})
+target_link_libraries(move_through_door_action_node ${PROJECT_NAME})
+
+add_executable(move_near_door_action_node src/move_near_door_action_node.cpp)
+ament_target_dependencies(move_near_door_action_node ${dependencies})
+target_link_libraries(move_near_door_action_node ${PROJECT_NAME})
+
 add_executable(hospital_controller_node src/hospital_controller_node.cpp)
 ament_target_dependencies(hospital_controller_node ${dependencies})
 
@@ -70,6 +78,8 @@ install(DIRECTORY launch pddl config DESTINATION share/${PROJECT_NAME})
 
 install(TARGETS
   move_action_node
+  move_through_door_action_node
+  move_near_door_action_node
   pick_action_node
   drop_action_node
   close_action_node

@@ -7,46 +7,29 @@ using namespace std::chrono_literals;
   MoveAction::MoveAction(std::string node_name, std::chrono::nanoseconds time_)
   : plansys2::ActionExecutorClient(node_name, time_)
   {
-    geometry_msgs::msg::PoseStamped wp;
-    wp.header.frame_id = "/map";
-    wp.header.stamp = now();
-
-    wp.pose.position.x = 0.0;
-    wp.pose.position.y = -2.0;
-    wp.pose.position.z = 0.0;
-    wp.pose.orientation.x = 0.0;
-    wp.pose.orientation.y = 0.0;
-    wp.pose.orientation.z = 0.0;
-    wp.pose.orientation.w = 1.0;
-    locations_["hall"] = wp;
-
-    wp.pose.position.x = 24.0;
-    wp.pose.position.y = -4.6;
-    locations_["corridor1"] = wp;
     
-    wp.pose.position.x = 24.0;
-    wp.pose.position.y = 5.0;
-    locations_["corridor2"] = wp;
+    this->declare_parameter("waypoints");
+    std::vector<std::string> wp_names_ = this->get_parameter("waypoints").as_string_array();
 
-    wp.pose.position.x = 18.7;
-    wp.pose.position.y = -0.7;
-    locations_["corridor3"] = wp;
+    for (int i = 0; i < wp_names_.size(); i++) {
+      std::string wp_str = wp_names_.at(i);
+    
+      declare_parameter(wp_str.c_str());
+      std::vector<double> coords = get_parameter(wp_str.c_str()).as_double_array();
+      
+      geometry_msgs::msg::PoseStamped wp;
+      wp.header.frame_id = "/map";
+      wp.header.stamp = now();
 
-    wp.pose.position.x = 24.3;
-    wp.pose.position.y = 0.0;
-    locations_["corridor4"] = wp;
-
-    wp.pose.position.x = 34.2;
-    wp.pose.position.y = 0.0;
-    locations_["corridor5"] = wp;
-
-    wp.pose.position.x = 43.0;
-    wp.pose.position.y = -4.7;
-    locations_["corridor6"] = wp;
-
-    wp.pose.position.x = 8.36;
-    wp.pose.position.y = 0.0;
-    locations_["reception"] = wp;
+      wp.pose.position.x = coords.at(0);
+      wp.pose.position.y = coords.at(1);
+      wp.pose.position.z = 0.0;
+      wp.pose.orientation.x = 0.0;
+      wp.pose.orientation.y = 0.0;
+      wp.pose.orientation.z = 0.0;
+      wp.pose.orientation.w = 1.0;
+      locations_[wp_str] = wp;
+    }
 
     using namespace std::placeholders;
     pos_sub_ = create_subscription<geometry_msgs::msg::PoseWithCovarianceStamped>(
