@@ -59,6 +59,12 @@ ament_target_dependencies(pick_action_node ${dependencies})
 add_executable(drop_action_node src/drop_action_node.cpp)
 ament_target_dependencies(drop_action_node ${dependencies})
 
+add_executable(close_action_node src/close_action_node.cpp)
+ament_target_dependencies(close_action_node ${dependencies})
+
+add_executable(open_action_node src/open_action_node.cpp)
+ament_target_dependencies(open_action_node ${dependencies})
+
 
 install(DIRECTORY launch pddl DESTINATION share/${PROJECT_NAME})
 
@@ -66,6 +72,8 @@ install(TARGETS
   move_action_node
   pick_action_node
   drop_action_node
+  close_action_node
+  open_action_node
   hospital_controller_node
   nav2_sim_node
   ARCHIVE DESTINATION lib
