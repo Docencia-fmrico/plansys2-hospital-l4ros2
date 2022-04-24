@@ -68,9 +68,10 @@ public:
     
     //hall
     
+    
     problem_expert_->addPredicate(plansys2::Predicate("(connected hall corridor1)"));
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor1 hall)"));
-    
+    //*
     problem_expert_->addPredicate(plansys2::Predicate("(connected hall corridor2)"));
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor2 hall)"));
     //corridor1
@@ -94,8 +95,9 @@ public:
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor4 corridor2)"));
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor2 corridor5)"));
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor5 corridor2)"));
+    //*/
     
-    problem_expert_->addPredicate(plansys2::Predicate("(robotAt brobot hall)"));
+    problem_expert_->addPredicate(plansys2::Predicate("(robot_at brobot hall)"));
   
   }
 
@@ -105,7 +107,7 @@ public:
       case GOAL_0:
         {
           // Set the goal for next state TO DO 
-          problem_expert_->setGoal(plansys2::Goal("(and(robotAt brobot corridor1))"));
+          problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot corridor1))"));
 
           // Compute the plan
           auto domain = domain_expert_->getDomain();
@@ -139,7 +141,7 @@ public:
               std::cout << "Successful finished " << std::endl;
 
               // Set the goal for next state TO DO 
-              problem_expert_->setGoal(plansys2::Goal("(and(robotAt brobot corridor2))"));
+              problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot corridor2))"));
 
               // Compute the plan
               auto domain = domain_expert_->getDomain();
@@ -196,7 +198,7 @@ public:
               std::cout << "Successful finished " << std::endl;
 
               // Set the goal for next state TO DO 
-              problem_expert_->setGoal(plansys2::Goal("(and(robotAt brobot corridor3))"));
+              problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot corridor3))"));
 
               // Compute the plan
               auto domain = domain_expert_->getDomain();
@@ -253,7 +255,7 @@ public:
               std::cout << "Successful finished " << std::endl;
 
               // Set the goal for next state TO DO
-              problem_expert_->setGoal(plansys2::Goal("(and(robotAt brobot corridor4))"));
+              problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot corridor4))"));
 
               // Compute the plan
               auto domain = domain_expert_->getDomain();
@@ -268,7 +270,7 @@ public:
 
               // Execute the plan
               if (executor_client_->start_plan_execution(plan.value())) {
-                state_ = GOAL_0;
+                state_ = FINISHED;
               }
             } else {
               for (const auto & action_feedback : feedback.action_execution_status) {
@@ -296,13 +298,18 @@ public:
         }
         break;
       
+      case FINISHED:
+        std::cout << "CONTROLLER: PLAN FINISHED" << std::endl;
+        return;
+        break;
+
       default:
         break;
     }
   }
 
 private:
-  typedef enum {GOAL_0, GOAL_1, GOAL_2, GOAL_3} StateType;
+  typedef enum {GOAL_0, GOAL_1, GOAL_2, GOAL_3, FINISHED} StateType;
   StateType state_;
 
   std::shared_ptr<plansys2::DomainExpertClient> domain_expert_;

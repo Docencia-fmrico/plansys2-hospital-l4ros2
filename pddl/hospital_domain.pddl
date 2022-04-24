@@ -12,53 +12,53 @@ robot
 ;;PREDICATES
 
 (:predicates 
-  (robotAt ?r - robot ?l - location)
-  (objectAt ?o - object ?l - location)
+  (robot_at ?r - robot ?l - location)
+  (object_at ?o - object ?l - location)
   (connected ?c1 ?c2 - location)
   (closed ?d - door)
   (opened ?d - door)
-  (objectIn ?o - object ?r - robot)
+  (object_in ?o - object ?r - robot)
   ;(elevatorIn ?e - elevator ?c - corridor)
 )
 
 ;;ACTIONS
 
-(:durative-action moveToLocation
+(:durative-action move_to_location
     :parameters (?r - robot ?from ?to - location)
     :duration ( = ?duration 5)
     :condition (and
         (at start(connected ?from ?to))
-        (at start(robotAt ?r ?from))
+        (at start(robot_at ?r ?from))
         )
     :effect (and
-        (at start(not(robotAt ?r ?from)))
-        (at end(robotAt ?r ?to))
+        (at start(not(robot_at ?r ?from)))
+        (at end(robot_at ?r ?to))
     )
 )
 
-;(:durative-action moveThroughDoor
+;(:durative-action move_through_door
 ;  :parameters (?r - robot ?d - door ?from ?to - location)
 ;  :duration ( = ?duration 5)
 ;  :condition 
 ;    (and 
 ;      (at start(opened ?d))
-;      (at start(robotAt ?r ?from))
+;      (at start(robot_at ?r ?from))
 ;      (at start(connected ?from ?d))
 ;      (at start(connected ?to ?d))
 ;    )
 ;  :effect 
 ;    (and 
-;      (at start(not (robotAt ?r ?from)))
-;      ((at end(robotAt ?r ?to)))
+;      (at start(not (robot_at ?r ?from)))
+;      ((at end(robot_at ?r ?to)))
 ;    )
 ;)
 
-;(:action moveThroughElevator
+;(:action move_through_elevator
 ;  :parameters (?r - robot ?e - elevator ?from ?to - corridor)
 ;  :precondition 
 ;    (and 
 ;      (elevatorIn ?e ?from)
-;      (robotAt ?r ?from)
+;      (robot_at ?r ?from)
 ;      (connected ?from ?e)
 ;      (connected ?to ?e)
 ;    )
@@ -66,17 +66,17 @@ robot
 ;    (and 
 ;      (not (elevatorIn ?e ?from))
 ;      (elevatorIn ?e ?to)
-;      (not (robotAt ?r ?from))
-;      (robotAt ?r ?to)
+;      (not (robot_at ?r ?from))
+;      (robot_at ?r ?to)
 ;    )
 ;)
 
-;(:action callElevator
+;(:action call_elevator
 ;  :parameters (?r - robot ?e - elevator ?from ?to - corridor)
 ;  :precondition 
 ;    (and 
 ;      (elevatorIn ?e ?from)
-;      (robotAt ?r ?to)
+;      (robot_at ?r ?to)
 ;      (connected ?from ?e)
 ;      (connected ?to ?e)
 ;    )
@@ -92,13 +92,13 @@ robot
 ;  :duration ( = ?duration 3)
 ;  :condition 
 ;    (and 
-;      (at start(robotAt ?r ?l))
-;      (at start(objectAt ?o ?l))
+;      (at start(robot_at ?r ?l))
+;      (at start(object_at ?o ?l))
 ;    )
 ;  :effect 
 ;    (and 
-;      (at start(not (objectAt ?o ?l)))
-;      (at end(objectIn ?o ?r))
+;      (at start(not (object_at ?o ?l)))
+;      (at end(object_in ?o ?r))
 ;    )
 ;)
 
@@ -107,13 +107,13 @@ robot
 ;  :duration ( = ?duration 3)
 ;  :condition 
 ;    (and 
-;      (at start(robotAt ?r ?l))
-;      (at start(objectIn ?o ?r))
+;      (at start(robot_at ?r ?l))
+;      (at start(object_in ?o ?r))
 ;    )
 ;  :effect 
 ;    (and 
-;      (at start(not (objectIn ?o ?r)))
-;      (at end(objectAt ?o ?l))
+;      (at start(not (object_in ?o ?r)))
+;      (at end(object_at ?o ?l))
 ;    )
 ;)
 
@@ -122,7 +122,7 @@ robot
 ;  :duration ( = ?duration 3)
 ;  :precondition 
 ;    (and 
-;      (at start(robotAt ?r ?from))
+;      (at start(robot_at ?r ?from))
 ;      (at start(connected ?from ?d))
 ;      (at start(closed ?d))
 ;    )
@@ -138,7 +138,7 @@ robot
 ;  :duration ( = ?duration 3)
 ;  :precondition 
 ;    (and 
-;      (at start(robotAt ?r ?from))
+;      (at start(robot_at ?r ?from))
 ;      (at start(connected ?from ?d))
 ;      (at start(opened ?d))
 ;    )
