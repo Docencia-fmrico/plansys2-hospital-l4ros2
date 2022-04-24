@@ -12,25 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <math.h>
-
-#include <memory>
-#include <string>
-#include <map>
-#include <algorithm>
-
-#include "geometry_msgs/msg/pose_stamped.hpp"
-#include "geometry_msgs/msg/pose.hpp"
-#include "geometry_msgs/msg/pose_with_covariance_stamped.hpp"
-#include "nav2_msgs/action/navigate_to_pose.hpp"
-
-#include "plansys2_executor/ActionExecutorClient.hpp"
-
-#include "rclcpp/rclcpp.hpp"
-#include "rclcpp_action/rclcpp_action.hpp"
-
-using namespace std::chrono_literals;
-
+/*
 class MoveAction : public plansys2::ActionExecutorClient
 {
 public:
@@ -102,7 +84,7 @@ public:
     wp.pose.position.x = 8.36;
     wp.pose.position.y = 0.0;
     locations_["reception"] = wp;
-    //*/
+    */
 
     using namespace std::placeholders;
     pos_sub_ = create_subscription<geometry_msgs::msg::PoseWithCovarianceStamped>(
@@ -195,11 +177,14 @@ private:
 
   double dist_to_move;
 };
+*/
+#include "MoveAction.hpp"
+
 
 int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<MoveAction>();
+  auto node = std::make_shared<MoveAction>("move_to_location", 5000ms);
 
   node->set_parameter(rclcpp::Parameter("action_name", "move_to_location"));
   node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
