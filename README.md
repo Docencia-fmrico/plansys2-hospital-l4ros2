@@ -9,7 +9,7 @@ Here we can see images of the real map (in gazebo) and the scheme that we will f
 
 ## Navigation
 
-    ros2 launch br2_navigation tiago_navigation.launch.py map:=~/foxy_ws/src/plansys2-hospital-l4ros2/maps/hospital_map.yaml
+    ros2 launch br2_navigation tiago_navigation.launch.py map:=/home/ivrolan/foxy_ws/src/plansys2-hospital-l4ros2/maps/hospital_map.yaml
 
 
 ## PDDL
