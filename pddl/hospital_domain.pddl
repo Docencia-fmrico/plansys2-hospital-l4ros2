@@ -93,35 +93,35 @@ robot
 ;    )
 ;)
 
-;(:durative-action pick
-;  :parameters (?r - robot ?o - object ?l - location)
-;  :duration ( = ?duration 3)
-;  :condition 
-;    (and 
-;      (at start(robot_at ?r ?l))
-;      (at start(object_at ?o ?l))
-;    )
-;  :effect 
-;    (and 
-;      (at start(not (object_at ?o ?l)))
-;      (at end(object_in ?o ?r))
-;    )
-;)
+(:durative-action pick
+ :parameters (?r - robot ?o - object ?l - location)
+ :duration ( = ?duration 3)
+ :condition 
+   (and 
+     (at start(robot_at ?r ?l))
+     (at start(object_at ?o ?l))
+   )
+ :effect 
+   (and 
+     (at start(not (object_at ?o ?l)))
+     (at end(object_in ?o ?r))
+   )
+)
 
-;(:durative-action drop
-;  :parameters (?r - robot ?o - object ?l - location)
-;  :duration ( = ?duration 3)
-;  :condition 
-;    (and 
-;      (at start(robot_at ?r ?l))
-;      (at start(object_in ?o ?r))
-;    )
-;  :effect 
-;    (and 
-;      (at start(not (object_in ?o ?r)))
-;      (at end(object_at ?o ?l))
-;    )
-;)
+(:durative-action drop
+ :parameters (?r - robot ?o - object ?l - location)
+ :duration ( = ?duration 3)
+ :condition 
+   (and 
+     (at start(robot_at ?r ?l))
+     (at start(object_in ?o ?r))
+   )
+ :effect 
+   (and 
+     (at start(not (object_in ?o ?r)))
+     (at end(object_at ?o ?l))
+   )
+)
 
 ;(:durative-action open 
 ;  :parameters (?r - robot ?d - door ?from - location)

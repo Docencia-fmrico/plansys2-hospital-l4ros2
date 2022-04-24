@@ -67,6 +67,18 @@ def generate_launch_description():
         name='move_action_node',
         output='screen',
         parameters=[])
+    pick_cmd = Node(
+        package='plansys2_hospital_l4ros2',
+        executable='pick_action_node',
+        name='pick_action_node',
+        output='screen',
+        parameters=[])
+    drop_cmd = Node(
+        package='plansys2_hospital_l4ros2',
+        executable='drop_action_node',
+        name='drop_action_node',
+        output='screen',
+        parameters=[])
 
     # Create the launch description and populate
     ld = LaunchDescription()
@@ -79,5 +91,7 @@ def generate_launch_description():
     ld.add_action(gazebo_cmd)
     # ld.add_action(nav2_cmd)
     ld.add_action(move_cmd)
+    ld.add_action(pick_cmd)
+    ld.add_action(drop_cmd)
 
     return ld

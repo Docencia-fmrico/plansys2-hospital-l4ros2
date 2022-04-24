@@ -48,6 +48,7 @@ public:
   {
     //instances
     problem_expert_->addInstance(plansys2::Instance{"brobot", "robot"});
+    problem_expert_->addInstance(plansys2::Instance{"obj1", "object"});
     
     problem_expert_->addInstance(plansys2::Instance{"visit1", "room"});
     problem_expert_->addInstance(plansys2::Instance{"str1", "room"});
@@ -98,6 +99,8 @@ public:
     //*/
     
     problem_expert_->addPredicate(plansys2::Predicate("(robot_at brobot hall)"));
+    problem_expert_->addPredicate(plansys2::Predicate("(object_at obj1 corridor1)"));
+    
   
   }
 
@@ -107,7 +110,7 @@ public:
       case GOAL_0:
         {
           // Set the goal for next state TO DO 
-          problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot corridor1))"));
+          problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot corridor1) (object_in obj1 brobot))"));
 
           // Compute the plan
           auto domain = domain_expert_->getDomain();
