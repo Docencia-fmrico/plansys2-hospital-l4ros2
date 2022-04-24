@@ -7,6 +7,11 @@ Here we can see images of the real map (in gazebo) and the scheme that we will f
 ![hospital world image](imgs/aws_hospital_top_view.png)
 ![hospital map scheme image](imgs/hospital_map_scheme.png)
 
+## Navigation
+
+    ros2 launch br2_navigation tiago_navigation.launch.py map:=/home/ivrolan/foxy_ws/src/plansys2-hospital-l4ros2/maps/hospital_map.yaml
+It cannot be added to our launcher
+
 ## PDDL
 ...
 
