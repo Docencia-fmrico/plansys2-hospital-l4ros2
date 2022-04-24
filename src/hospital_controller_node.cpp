@@ -89,8 +89,8 @@ public:
     //corridor2
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor2 reception)"));
     problem_expert_->addPredicate(plansys2::Predicate("(connected reception corridor2)"));
-    problem_expert_->addPredicate(plansys2::Predicate("(connected corridor2 corridor3)"));
-    problem_expert_->addPredicate(plansys2::Predicate("(connected corridor3 corridor2)"));
+    // problem_expert_->addPredicate(plansys2::Predicate("(connected corridor2 corridor3)"));  here it is an obstacle that blocks the corridor
+    // problem_expert_->addPredicate(plansys2::Predicate("(connected corridor3 corridor2)"));
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor2 corridor4)"));
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor4 corridor2)"));
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor2 corridor5)"));

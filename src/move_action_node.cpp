@@ -53,13 +53,13 @@ public:
     wp.pose.position.x = 24.0;
     wp.pose.position.y = -4.6;
     locations_["corridor1"] = wp;
-
+    
+    wp.pose.position.x = 24.0;
     wp.pose.position.y = 5.0;
-    wp.pose.position.y = -4.6;
     locations_["corridor2"] = wp;
 
     wp.pose.position.x = 18.7;
-    wp.pose.position.y = -0.1;
+    wp.pose.position.y = -0.7;
     locations_["corridor3"] = wp;
 
     wp.pose.position.x = 24.3;
