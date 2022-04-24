@@ -18,10 +18,12 @@ robot
   (closed ?d - door)
   (opened ?d - door)
   (object_in ?o - object ?r - robot)
+
   ;(elevatorIn ?e - elevator ?c - corridor)
 )
 
 ;;ACTIONS
+
 
 (:durative-action move_to_location
     :parameters (?r - robot ?from ?to - location)
@@ -54,11 +56,13 @@ robot
 ;)
 
 ;(:action move_through_elevator
+
 ;  :parameters (?r - robot ?e - elevator ?from ?to - corridor)
 ;  :precondition 
 ;    (and 
 ;      (elevatorIn ?e ?from)
 ;      (robot_at ?r ?from)
+
 ;      (connected ?from ?e)
 ;      (connected ?to ?e)
 ;    )
@@ -72,11 +76,13 @@ robot
 ;)
 
 ;(:action call_elevator
+
 ;  :parameters (?r - robot ?e - elevator ?from ?to - corridor)
 ;  :precondition 
 ;    (and 
 ;      (elevatorIn ?e ?from)
 ;      (robot_at ?r ?to)
+
 ;      (connected ?from ?e)
 ;      (connected ?to ?e)
 ;    )
