@@ -24,7 +24,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     # Get the launch directory
-    example_dir = get_package_share_directory('plansys2_hospital_l4ros2')
+    hospital_dir = get_package_share_directory('plansys2_hospital_l4ros2')
 
     stdout_linebuf_envvar = SetEnvironmentVariable(
         'RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED', '1')
@@ -34,18 +34,24 @@ def generate_launch_description():
             get_package_share_directory('plansys2_bringup'),
             'launch',
             'plansys2_bringup_launch_monolithic.py')),
-        launch_arguments={'model_file': example_dir + '/pddl/hospital_domain.pddl'}.items()
+        launch_arguments={'model_file': hospital_dir + '/pddl/hospital_domain.pddl'}.items()
         )
     """
     nav2_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(
-            get_package_share_directory('nav2_bringup'),
+            get_package_share_directory('br2_navigation'),
             'launch',
-            'tb3_simulation_launch.py')),
+            'tiago_navigation.launch.py')),
         launch_arguments={
-            'autostart': 'true',
-            'params_file': os.path.join(example_dir, 'params', 'nav2_params.yaml')
+            'map': os.path.join(hospital_dir, 'maps', 'hospital_map.yaml')
         }.items())
+    """
+    gazebo_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join(
+            hospital_dir,
+            'launch',
+            'sim_hospital.launch.py'))
+            )
     """
     fake_nav2_cmd = Node(
         package='plansys2_hospital_l4ros2',
@@ -53,7 +59,7 @@ def generate_launch_description():
         name='nav2_sim_node',
         output='screen',
         parameters=[])
-
+    """
     # Specify the actions
     move_cmd = Node(
         package='plansys2_hospital_l4ros2',
@@ -70,7 +76,8 @@ def generate_launch_description():
 
     # Declare the launch options
     ld.add_action(plansys2_cmd)
-    ld.add_action(fake_nav2_cmd)
+    ld.add_action(gazebo_cmd)
+    # ld.add_action(nav2_cmd)
     ld.add_action(move_cmd)
 
     return ld
