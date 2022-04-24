@@ -66,7 +66,8 @@ def generate_launch_description():
         executable='move_action_node',
         name='move_action_node',
         output='screen',
-        parameters=[])
+        parameters=[os.path.join(hospital_dir, 'config', 'coords.yaml')]))
+    
     pick_cmd = Node(
         package='plansys2_hospital_l4ros2',
         executable='pick_action_node',

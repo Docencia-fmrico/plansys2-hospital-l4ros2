@@ -66,7 +66,7 @@ add_executable(open_action_node src/open_action_node.cpp)
 ament_target_dependencies(open_action_node ${dependencies})
 
 
-install(DIRECTORY launch pddl DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY launch pddl config DESTINATION share/${PROJECT_NAME})
 
 install(TARGETS
   move_action_node
