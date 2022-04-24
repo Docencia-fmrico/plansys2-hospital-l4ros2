@@ -56,6 +56,9 @@ public:
     problem_expert_->addInstance(plansys2::Instance{"visit1", "room"});
     problem_expert_->addInstance(plansys2::Instance{"str1", "room"});
     problem_expert_->addInstance(plansys2::Instance{"str2", "room"});
+
+    problem_expert_->addInstance(plansys2::Instance{"s2", "door"});
+
     problem_expert_->addInstance(plansys2::Instance{"str3", "room"});
     problem_expert_->addInstance(plansys2::Instance{"str4", "room"});
     problem_expert_->addInstance(plansys2::Instance{"str5", "room"});
@@ -89,6 +92,12 @@ public:
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor5 corridor1)"));
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor1 corridor6)"));
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor6 corridor1)"));
+
+    // door connections
+    problem_expert_->addPredicate(plansys2::Predicate("(closed s2)"));
+    problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door  corridor1 s2)"));
+
+    problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door  str2 s2)"));
     
     //corridor2
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor2 reception)"));
@@ -113,7 +122,7 @@ public:
       case GOAL_0:
         {
           // Set the goal for next state TO DO 
-          problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot corridor1) (object_in obj1 brobot))"));
+          problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot str2) (object_in obj1 brobot))"));
 
           // Compute the plan
           auto domain = domain_expert_->getDomain();
