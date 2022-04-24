@@ -30,9 +30,12 @@
 class PatrollingController : public rclcpp::Node
 {
 public:
+  bool finished_;
+
   PatrollingController()
   : rclcpp::Node("patrolling_controller"), state_(GOAL_0)
   {
+    finished_ = false;
   }
 
   void init()
@@ -300,6 +303,7 @@ public:
       
       case FINISHED:
         std::cout << "CONTROLLER: PLAN FINISHED" << std::endl;
+        finished_ = true;
         return;
         break;
 
@@ -311,6 +315,7 @@ public:
 private:
   typedef enum {GOAL_0, GOAL_1, GOAL_2, GOAL_3, FINISHED} StateType;
   StateType state_;
+
 
   std::shared_ptr<plansys2::DomainExpertClient> domain_expert_;
   std::shared_ptr<plansys2::PlannerClient> planner_client_;
@@ -326,7 +331,7 @@ int main(int argc, char ** argv)
   node->init();
 
   rclcpp::Rate rate(5);
-  while (rclcpp::ok()) {
+  while (rclcpp::ok() && !node->finished_) {
     node->step();
 
     rate.sleep();
