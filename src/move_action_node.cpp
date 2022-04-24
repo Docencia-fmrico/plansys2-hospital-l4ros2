@@ -37,6 +37,31 @@ public:
   MoveAction()
   : plansys2::ActionExecutorClient("move_to_location", 5000ms)
   {
+
+    declare_parameter("waypoints");
+    std::vector<std::string> wp_names_ = get_parameter("waypoints").as_string_array();
+
+    for (int i = 0; i < wp_names_.size(); i++) {
+      std::string wp_str = wp_names_.at(i);
+    
+      declare_parameter(wp_str.c_str());
+      std::vector<double> coords = get_parameter(wp_str.c_str()).as_double_array();
+      
+      geometry_msgs::msg::PoseStamped wp;
+      wp.header.frame_id = "/map";
+      wp.header.stamp = now();
+
+      wp.pose.position.x = coords.at(0);
+      wp.pose.position.y = coords.at(1);
+      wp.pose.position.z = 0.0;
+      wp.pose.orientation.x = 0.0;
+      wp.pose.orientation.y = 0.0;
+      wp.pose.orientation.z = 0.0;
+      wp.pose.orientation.w = 1.0;
+      locations_[wp_str] = wp;
+    }
+    
+    /*
     geometry_msgs::msg::PoseStamped wp;
     wp.header.frame_id = "/map";
     wp.header.stamp = now();
@@ -77,6 +102,7 @@ public:
     wp.pose.position.x = 8.36;
     wp.pose.position.y = 0.0;
     locations_["reception"] = wp;
+    //*/
 
     using namespace std::placeholders;
     pos_sub_ = create_subscription<geometry_msgs::msg::PoseWithCovarianceStamped>(
