@@ -3,10 +3,16 @@ Repository for planning and move through the [hospital map](https://github.com/a
 
 ## How to run
 Launch the plansys2 bringup and action nodes + the gazebo world
+
     ros2 launch plansys2_hospital_l4ros2 plansys2_hospital_launch.py
     
 Then launch the navigation separately:
+
     ros2 launch br2_navigation tiago_navigation.launch.py map:=/home/ivrolan/foxy_ws/src/plansys2-hospital-l4ros2/maps/hospital_map.yaml
+    
+The plansys2 controller that commands the different goals:
+    
+    ros2 run plansys2_hospital_l4ros2 hospital_controller_node
     
 
 ## Map
