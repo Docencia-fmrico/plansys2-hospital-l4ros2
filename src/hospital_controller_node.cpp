@@ -95,9 +95,9 @@ public:
 
     // door connections
     problem_expert_->addPredicate(plansys2::Predicate("(closed s2)"));
-    problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door  corridor1 s2)"));
+    problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door corridor1 s2)"));
 
-    problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door  str2 s2)"));
+    problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door str2 s2)"));
     
     //corridor2
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor2 reception)"));

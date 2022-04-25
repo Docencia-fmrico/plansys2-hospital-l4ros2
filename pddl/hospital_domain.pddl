@@ -17,7 +17,7 @@ robot
   (object_at ?o - object ?l - location)
   (connected ?c1 ?c2 - location)
   (robot_near_door ?r - robot ?d - door)
-  (connected_to_door  ?loc - location ?d - door)
+  (connected_to_door ?l - location ?d - door)
   (closed ?d - door)
   (opened ?d - door)
   (object_in ?o - object ?r - robot)
