@@ -113,8 +113,8 @@ def generate_launch_description():
 
     # Declare the launch options
     ld.add_action(plansys2_cmd)
-    ld.add_action(gazebo_cmd)
-    #ld.add_action(fake_nav2_cmd)
+    #ld.add_action(gazebo_cmd)
+    ld.add_action(fake_nav2_cmd)
     #ld.add_action(_nav2_cmd)
     ld.add_action(move_cmd)
     ld.add_action(move_near_cmd)

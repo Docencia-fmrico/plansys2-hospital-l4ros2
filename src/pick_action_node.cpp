@@ -34,7 +34,8 @@ private:
     }
 
     std::cout << "\r\e[K" << std::flush;
-    std::cout << "Picking object ... [" << std::min(100.0, progress_ * 100.0) << "%]  " <<
+    std::string object_name = get_arguments()[1].c_str();
+    std::cout << "Picking object " << object_name <<" [" << std::min(100.0, progress_ * 100.0) << "%]  " <<
       std::flush;
   }
 
