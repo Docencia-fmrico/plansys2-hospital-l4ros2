@@ -36,7 +36,7 @@ def generate_launch_description():
             'plansys2_bringup_launch_monolithic.py')),
         launch_arguments={'model_file': hospital_dir + '/pddl/hospital_domain.pddl'}.items()
         )
-    #"""
+    """
     nav2_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(
             get_package_share_directory('br2_navigation'),
@@ -45,7 +45,7 @@ def generate_launch_description():
         launch_arguments={
             'map': os.path.join(hospital_dir, 'maps', 'hospital_map.yaml')
         }.items())
-    #"""
+    """
     gazebo_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(
             hospital_dir,
@@ -113,9 +113,9 @@ def generate_launch_description():
 
     # Declare the launch options
     ld.add_action(plansys2_cmd)
-    ld.add_action(gazebo_cmd)
+    #ld.add_action(gazebo_cmd)
     #ld.add_action(fake_nav2_cmd)
-    ld.add_action(nav2_cmd)
+    #ld.add_action(nav2_cmd)
     ld.add_action(move_cmd)
     ld.add_action(move_near_cmd)
     ld.add_action(move_through_cmd)
