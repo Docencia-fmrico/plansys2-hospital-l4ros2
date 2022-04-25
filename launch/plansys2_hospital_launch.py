@@ -66,6 +66,43 @@ def generate_launch_description():
         executable='move_action_node',
         name='move_action_node',
         output='screen',
+        parameters=[os.path.join(hospital_dir, 'config', 'coords.yaml')])
+    move_near_cmd = Node(
+        package='plansys2_hospital_l4ros2',
+        executable='move_near_door_action_node',
+        name='move_near_door_action_node',
+        output='screen',
+        parameters=[os.path.join(hospital_dir, 'config', 'coords_near.yaml')])
+    move_through_cmd = Node(
+        package='plansys2_hospital_l4ros2',
+        executable='move_through_door_action_node',
+        name='move_through_door_action_node',
+        output='screen',
+        parameters=[os.path.join(hospital_dir, 'config', 'coords_through.yaml')])
+    
+    pick_cmd = Node(
+        package='plansys2_hospital_l4ros2',
+        executable='pick_action_node',
+        name='pick_action_node',
+        output='screen',
+        parameters=[])
+    drop_cmd = Node(
+        package='plansys2_hospital_l4ros2',
+        executable='drop_action_node',
+        name='drop_action_node',
+        output='screen',
+        parameters=[])
+    open_cmd = Node(
+        package='plansys2_hospital_l4ros2',
+        executable='open_action_node',
+        name='open_action_node',
+        output='screen',
+        parameters=[])
+    close_cmd = Node(
+        package='plansys2_hospital_l4ros2',
+        executable='close_action_node',
+        name='close_action_node',
+        output='screen',
         parameters=[])
 
     # Create the launch description and populate
@@ -76,8 +113,15 @@ def generate_launch_description():
 
     # Declare the launch options
     ld.add_action(plansys2_cmd)
-    ld.add_action(gazebo_cmd)
-    # ld.add_action(nav2_cmd)
+    #ld.add_action(gazebo_cmd)
+    #ld.add_action(fake_nav2_cmd)
+    #ld.add_action(nav2_cmd)
     ld.add_action(move_cmd)
+    ld.add_action(move_near_cmd)
+    ld.add_action(move_through_cmd)
+    ld.add_action(pick_cmd)
+    ld.add_action(drop_cmd)
+    ld.add_action(open_cmd)
+    ld.add_action(close_cmd)
 
     return ld
