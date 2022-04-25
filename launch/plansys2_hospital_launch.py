@@ -52,14 +52,14 @@ def generate_launch_description():
             'launch',
             'sim_hospital.launch.py'))
             )
-    """
+    
     fake_nav2_cmd = Node(
         package='plansys2_hospital_l4ros2',
         executable='nav2_sim_node',
         name='nav2_sim_node',
         output='screen',
         parameters=[])
-    """
+    
     # Specify the actions
     move_cmd = Node(
         package='plansys2_hospital_l4ros2',
@@ -114,7 +114,8 @@ def generate_launch_description():
     # Declare the launch options
     ld.add_action(plansys2_cmd)
     ld.add_action(gazebo_cmd)
-    # ld.add_action(nav2_cmd)
+    #ld.add_action(fake_nav2_cmd)
+    #ld.add_action(_nav2_cmd)
     ld.add_action(move_cmd)
     ld.add_action(move_near_cmd)
     ld.add_action(move_through_cmd)

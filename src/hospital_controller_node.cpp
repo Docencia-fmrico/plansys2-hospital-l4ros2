@@ -58,6 +58,8 @@ public:
     problem_expert_->addInstance(plansys2::Instance{"str2", "room"});
 
     problem_expert_->addInstance(plansys2::Instance{"s2", "door"});
+    problem_expert_->addInstance(plansys2::Instance{"s1", "door"});
+    problem_expert_->addInstance(plansys2::Instance{"s5", "door"});
 
     problem_expert_->addInstance(plansys2::Instance{"str3", "room"});
     problem_expert_->addInstance(plansys2::Instance{"str4", "room"});
@@ -98,6 +100,16 @@ public:
     problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door corridor1 s2)"));
 
     problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door str2 s2)"));
+
+    problem_expert_->addPredicate(plansys2::Predicate("(opened s1)"));
+    problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door corridor1 s1)"));
+
+    problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door str1 s1)"));
+    
+    problem_expert_->addPredicate(plansys2::Predicate("(closed s5)"));
+    problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door corridor2 s5)"));
+
+    problem_expert_->addPredicate(plansys2::Predicate("(connected_to_door str5 s5)"));
     
     //corridor2
     problem_expert_->addPredicate(plansys2::Predicate("(connected corridor2 reception)"));
@@ -111,9 +123,8 @@ public:
     //*/
     
     problem_expert_->addPredicate(plansys2::Predicate("(robot_at brobot hall)"));
-    problem_expert_->addPredicate(plansys2::Predicate("(object_at obj1 corridor1)"));
+    problem_expert_->addPredicate(plansys2::Predicate("(object_at obj1 str2)"));
     
-  
   }
 
   void step()
@@ -122,7 +133,7 @@ public:
       case GOAL_0:
         {
           // Set the goal for next state TO DO 
-          problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot str2) (object_in obj1 brobot))"));
+          problem_expert_->setGoal(plansys2::Goal("(and(object_in obj1 brobot))"));
 
           // Compute the plan
           auto domain = domain_expert_->getDomain();
@@ -156,7 +167,7 @@ public:
               std::cout << "Successful finished " << std::endl;
 
               // Set the goal for next state TO DO 
-              problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot corridor2))"));
+              problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot str5))"));
 
               // Compute the plan
               auto domain = domain_expert_->getDomain();
@@ -213,7 +224,7 @@ public:
               std::cout << "Successful finished " << std::endl;
 
               // Set the goal for next state TO DO 
-              problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot corridor3))"));
+              problem_expert_->setGoal(plansys2::Goal("(and(object_at obj1 str1))"));
 
               // Compute the plan
               auto domain = domain_expert_->getDomain();
@@ -270,7 +281,7 @@ public:
               std::cout << "Successful finished " << std::endl;
 
               // Set the goal for next state TO DO
-              problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot corridor4))"));
+              problem_expert_->setGoal(plansys2::Goal("(and(robot_at brobot reception))"));
 
               // Compute the plan
               auto domain = domain_expert_->getDomain();
