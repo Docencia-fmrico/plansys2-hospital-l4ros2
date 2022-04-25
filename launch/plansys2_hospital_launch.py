@@ -67,6 +67,18 @@ def generate_launch_description():
         name='move_action_node',
         output='screen',
         parameters=[os.path.join(hospital_dir, 'config', 'coords.yaml')])
+    move_near_cmd = Node(
+        package='plansys2_hospital_l4ros2',
+        executable='move_near_door_action_node',
+        name='move_near_door_action_node',
+        output='screen',
+        parameters=[os.path.join(hospital_dir, 'config', 'coords_near.yaml')])
+    move_through_cmd = Node(
+        package='plansys2_hospital_l4ros2',
+        executable='move_through_door_action_node',
+        name='move_through_door_action_node',
+        output='screen',
+        parameters=[os.path.join(hospital_dir, 'config', 'coords_through.yaml')])
     
     pick_cmd = Node(
         package='plansys2_hospital_l4ros2',
@@ -104,6 +116,8 @@ def generate_launch_description():
     ld.add_action(gazebo_cmd)
     # ld.add_action(nav2_cmd)
     ld.add_action(move_cmd)
+    ld.add_action(move_near_cmd)
+    ld.add_action(move_through_cmd)
     ld.add_action(pick_cmd)
     ld.add_action(drop_cmd)
     ld.add_action(open_cmd)

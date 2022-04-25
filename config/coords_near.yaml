@@ -1,0 +1,25 @@
+move_near_door_action_node:
+  ros__parameters:
+    waypoints: ["hall", "corridor1", "corridor2", "corridor3", "corridor4",
+    "corridor5", "corridor6", "reception", "visit1", "str1", "str2", "str3",
+    "str4", "str5", "v11", "s1", "s2", "s32", "s4", "s5"]
+    hall: [0.0, -2.0]
+    corridor1: [24.0, -4.6]
+    corridor2: [24.0, 5.0]
+    corridor3: [18.7, -0.7]
+    corridor4: [24.3, 0.0]
+    corridor5: [34.2, 0.0]
+    corridor6: [43.0, -4.7]
+    reception: [8.36, 0.0]
+    visit1: [36.6, -8.45]
+    str1: [30.5, -8.45]
+    str2: [17.3, -8.45]
+    str3: [38.0, 5.7]
+    str4: [30.0, 8.7]
+    str5: [17.3, 8.7]
+    v11: [34.8, -6.05]
+    s1: [32.9, -6.05]
+    s2: [19.0, -6.2]
+    s32: [35.7, 5.7]
+    s4: [32.7, 6.72]
+    s5: [19.2, 6.7]
