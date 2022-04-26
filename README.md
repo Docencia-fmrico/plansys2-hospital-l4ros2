@@ -24,7 +24,9 @@ Here we can see images of the gazebo world, the map created by the robot and the
 
 ## Videos
 
-[videos](https://urjc-my.sharepoint.com/:f:/g/personal/u_sanz_2019_alumnos_urjc_es/Elaho8XB9bBNtJU_2Lgf7uYBT0r2wqlvyIr8PTQo7XPVlg?e=tdPkWa)
+[![Video1](https://img.youtube.com/vi/ARSSwwnfAuw/0.jpg)](https://www.youtube.com/watch?v=ARSSwwnfAuw)
+
+[![Video2](https://img.youtube.com/vi/ZedMGkq9TEw/0.jpg)](https://www.youtube.com/watch?v=ZedMGkq9TEw)
 
 ## Authors
 
