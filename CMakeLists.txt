@@ -31,7 +31,7 @@ set(dependencies
     plansys2_problem_expert
     plansys2_pddl_parser
     geometry_msgs
-
+    tf2_geometry_msgs
 )
 
 include_directories(include)

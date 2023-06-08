@@ -8,13 +8,13 @@ using namespace std::chrono_literals;
   : plansys2::ActionExecutorClient(node_name, time_)
   {
     
-    this->declare_parameter("waypoints");
+    this->declare_parameter<std::vector<std::string>>("waypoints");
     std::vector<std::string> wp_names_ = this->get_parameter("waypoints").as_string_array();
 
     for (int i = 0; i < wp_names_.size(); i++) {
       std::string wp_str = wp_names_.at(i);
     
-      declare_parameter(wp_str.c_str());
+      declare_parameter<std::string>(wp_str.c_str());
       std::vector<double> coords = get_parameter(wp_str.c_str()).as_double_array();
       
       geometry_msgs::msg::PoseStamped wp;
